@@ -1,4 +1,3 @@
-import requests
 from html.parser import HTMLParser
 
 class BeatmapParser(HTMLParser):
@@ -9,9 +8,11 @@ class BeatmapParser(HTMLParser):
     def __init__(self, html):
         HTMLParser.__init__(self)
 
-        # beatmap properties
+        # parsing flags
         self.parsing_map = None
         self.current_attribute = 0
+
+        # beatmap properties
         self.author = None
         self.date = None
         self.song_name = None
@@ -47,3 +48,9 @@ class BeatmapParser(HTMLParser):
                         return
                 setattr(self, self.__ATTRIBUTES[self.current_attribute], stripped_data)
                 self.current_attribute += 1
+    
+    def get_ratio():
+        return self.likes / (self.likes + self.dislikes)
+
+    def get_date():
+        return self.date
