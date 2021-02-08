@@ -7,11 +7,9 @@ class BeatmapParser(HTMLParser):
 
     def __init__(self, html):
         HTMLParser.__init__(self)
-
         # parsing flags
         self.parsing_map = None
         self.current_attribute = 0
-
         # beatmap properties
         self.author = None
         self.date = None
@@ -19,7 +17,6 @@ class BeatmapParser(HTMLParser):
         self.difficulties = []
         self.likes = None
         self.dislikes = None
-
         # parse details from HTML
         self.feed(html)
 
@@ -49,8 +46,11 @@ class BeatmapParser(HTMLParser):
                 setattr(self, self.__ATTRIBUTES[self.current_attribute], stripped_data)
                 self.current_attribute += 1
     
-    def get_ratio():
-        return self.likes / (self.likes + self.dislikes)
+    def get_likes(self):
+        return self.likes
 
-    def get_date():
+    def get_dislikes(self):
+        return self.dislikes
+
+    def get_date(self):
         return self.date
