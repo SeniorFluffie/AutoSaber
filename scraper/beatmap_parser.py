@@ -15,8 +15,8 @@ class BeatmapParser(HTMLParser):
         self.date = None
         self.song_name = None
         self.difficulties = []
-        self.likes = None
-        self.dislikes = None
+        self.likes = 0
+        self.dislikes = 0
         # parse details from HTML
         self.feed(html)
 
@@ -35,22 +35,25 @@ class BeatmapParser(HTMLParser):
 
     def handle_data(self, data):
         if (self.parsing_map):
+            if (len(self.__ATTRIBUTES) <= self.current_attribute):
+                return
             if (not data.isspace() and not data == 'Difficulties'):
                 stripped_data = data.replace('\n', '').strip()
                 if (self.__ATTRIBUTES[self.current_attribute] == 'difficulties'):
                     if (stripped_data.isnumeric()):
                         self.current_attribute += 1
+                        stripped_data = int(stripped_data)
                     else:
                         self.difficulties.append(stripped_data)
                         return
                 setattr(self, self.__ATTRIBUTES[self.current_attribute], stripped_data)
                 self.current_attribute += 1
-    
+
     def get_likes(self):
-        return self.likes
+        return int(self.likes) if (self.likes is not None) else 0
 
     def get_dislikes(self):
-        return self.dislikes
+        return int(self.dislikes) if (self.dislikes is not None) else 0
 
     def get_date(self):
         return self.date
