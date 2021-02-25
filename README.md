@@ -1,5 +1,13 @@
 # AutoSaber
 
+## Problem Motivation
+Coming Soon 
+
+## Libraries / Frameworks
+* [Python 3.8.2](https://www.python.org/)
+* [Requests](https://requests.readthedocs.io/en/master/)
+
+## Background Information
 Information regarding mapping terminology can be found on the [Beat Saber Modding Group Page](https://bsmg.wiki/mapping/glossary.html).
 
 ## Dataset
